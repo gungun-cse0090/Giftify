@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Giftify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <img src="logo.png.png" alt="Giftify">
+    <div class="moving-text">
+      <span>Giftify 🎁 Giftify 🎁 Giftify 🎁 </span>
+    </div>
+  </div>
+
+  <input type="text" placeholder="Search gifts..." id="searchBox">
+
+  <div>
+    🛒 Cart: <span id="cart">0</span>
+  </div>
+
+</header>
+
+<div class="categories">
+
+  <div class="cat" onclick="openCakes()">🎂 Cakes</div>
+  <div class="cat" onclick="openChocolate()">🍫 Chocolates</div>
+  <div class="cat" onclick="openBouquet()">💐 Bouquet</div>
+
+</div>
+
+<div style="position:fixed; bottom:20px; right:20px;">
+  <button onclick="goToPayment()">
+  </button>
+</div>
+
+<script>
+let count = parseInt(localStorage.getItem("cartCount")) || 0;
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateCart();
+});
+function updateCart(){
+  document.getElementById("cart").innerText = count;
+}
+function openCakes(){
+  window.location.href = "birthday.html";
+}
+
+function openChocolate(){
+  window.location.href = "chocolate.html";
+}
+
+function openBouquet(){
+  window.location.href = "bouquet.html";
+}
+let searchBox = document.getElementById("searchBox");
+
+searchBox.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    searchNow();
+  }
+});
+searchBox.addEventListener("keyup", function(){
+  searchNow();
+});
+
+function searchNow(){
+  let value = searchBox.value.toLowerCase().trim();
+
+  if(value.includes("cake")){
+    window.location.href = "birthday.html";
+  }
+  else if(value.includes("choco")){
+    window.location.href = "chocolate.html";
+  }
+  else if(value.includes("bouquet") || value.includes("flower")){
+    window.location.href = "bouquet.html";
+  }
+}
+function goToPayment(){
+  let c = parseInt(localStorage.getItem("cartCount")) || 0;
+
+  if(c <= 0){
+    alert("Cart is empty 😅");
+    return;
+  }
+
+  window.location.href = "payment.html";
+}
+
+</script>
+
+</body>
+</html>

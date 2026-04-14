@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Giftify Intro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="margin:0; 
+background:black;
+ display:flex; 
+ flex-direction:column; 
+ align-items:center;
+  justify-content:center;
+   height:100vh;">
+
+<video id="video" autoplay muted playsinline style="width:90%;
+ max-width:360px; 
+ border-radius:10px;">
+  <source src="intro.mp4.mp4.mp4" type="video/mp4">
+</video>
+
+<br>
+<button onclick="document.getElementById('video').muted=false; document.getElementById('video').play();" 
+style="padding:10px 15px; background:#ffcc70; border:none; border-radius:8px;">
+</button>
+
+<script>
+document.getElementById("video").onended = function () {
+  window.location.href = "home.html";   // 👉 FIRST GO HOME
+};
+</script>
+
+</body>
+</html>

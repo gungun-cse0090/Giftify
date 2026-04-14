@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Birthday Gifts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f1f3f6;
+      text-align: center;
+    }
+
+    header {
+      background: #ffcc70;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    .card {
+      background: white;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-top: 8px;
+      background: #131921;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .remove {
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  🎂 Cakes | Cart: <span id="cart">0</span>
+</header>
+
+<div style="position:fixed; bottom:20px; right:20px;">
+  <button onclick="goToPayment()">🛒 Payment</button>
+</div>
+
+
+<div class="card">
+  <img src="cake.png">
+  <h3> Chocolate Cake </h3>
+  <p>₹499</p>
+  <button onclick="add(499)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(499)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="bunnnyy.png">
+  <h3> Cupcake Cake Combo</h3>
+  <p>₹599</p>
+  <button onclick="add(599)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(599)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="cake14.png">
+  <h3>Chocolate Sprinkle Cake</h3>
+  <p>₹799</p>
+  <button onclick="add(799)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(799)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="cake11.png">
+  <h3>White Sprinkle Cake</h3>
+  <p>₹699</p>
+  <button onclick="add(699)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(699)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="cake10.png">
+  <h3>Red Velvet Cake</h3>
+  <p>₹599</p>
+  <button onclick="add(599)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(599)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="cake5.png">
+  <h3> Pink Butterfly Cake </h3>
+  <p>₹999</p>
+  <button onclick="add(999)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(999)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="cake8.png">
+  <h3>Panda Cake Combo</h3>
+  <p>₹999</p>
+  <button onclick="add(999)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(999)">Remove</button>
+</div>
+
+<script>
+let count = parseInt(localStorage.getItem("cartCount")) || 0;
+let total = parseInt(localStorage.getItem("cartTotal")) || 0;
+
+document.getElementById("cart").innerText = count;
+
+function add(price){
+  count = parseInt(localStorage.getItem("cartCount")) || 0;
+  total = parseInt(localStorage.getItem("cartTotal")) || 0;
+
+  count++;
+  total += price;
+
+  localStorage.setItem("cartCount", count);
+  localStorage.setItem("cartTotal", total);
+
+  document.getElementById("cart").innerText = count;
+}
+function removeItem(price){
+  count = parseInt(localStorage.getItem("cartCount")) || 0;
+  total = parseInt(localStorage.getItem("cartTotal")) || 0;
+
+  if(count > 0){
+    count--;
+    total -= price;
+
+    if(total < 0) total = 0;
+
+    localStorage.setItem("cartCount", count);
+    localStorage.setItem("cartTotal", total);
+
+    document.getElementById("cart").innerText = count;
+  }
+}
+function goToPayment(){
+  let c = parseInt(localStorage.getItem("cartCount")) || 0;
+
+  if(c <= 0){
+    alert("Cart is empty 😅");
+    return;
+  }
+
+  window.location.href = "payment.html";
+}
+
+</script>
+
+</body>
+</html>

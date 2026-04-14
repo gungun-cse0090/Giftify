@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bouquet Gifts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f1f3f6;
+      text-align: center;
+    }
+
+    header {
+      background: #ffcc70;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    .card {
+      background: white;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 200px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .add {
+      background: #131921;
+      color: white;
+    }
+
+    .remove {
+      background: red;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  💐 Bouquet | Cart: <span id="cart">0</span>
+</header>
+
+<div style="position:fixed; bottom:20px; right:20px;">
+  <button onclick="goToPayment()">🛒 Payment</button>
+</div>
+
+<div class="card">
+  <img src="rose1.png">
+  <h3>Classic Pink Rose Bouquet</h3>
+  <p>₹999</p>
+  <button class="add" onclick="add(999)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(999)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="rose2.png">
+  <h3>Red Rose Bouquet</h3>
+  <p>₹1499</p>
+  <button class="add" onclick="add(1499)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(1499)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="rose3.png">
+  <h3>Luxurious Rose Bouquet</h3>
+  <p>₹1499</p>
+  <button class="add" onclick="add(1499)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(1499)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="rose5.png">
+  <h3>Elegant Rose Bouquet</h3>
+  <p>₹1499</p>
+  <button class="add" onclick="add(1499)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(1499)">Remove</button>
+</div>
+
+<div class="card">
+  <img src="rose4.png">
+  <h3>Bouquet of Red Roses</h3>
+  <p>₹1499</p>
+  <button class="add" onclick="add(1499)">Add to Cart</button>
+  <button class="remove" onclick="removeItem(1499)">Remove</button>
+</div>
+
+<script>
+let count = parseInt(localStorage.getItem("cartCount")) || 0;
+let total = parseInt(localStorage.getItem("cartTotal")) || 0;
+
+document.getElementById("cart").innerText = count;
+
+function add(price){
+  count++;
+  total += price;
+
+  localStorage.setItem("cartCount", count);
+  localStorage.setItem("cartTotal", total);
+
+  document.getElementById("cart").innerText = count;
+}
+function removeItem(price){
+  if(count > 0){
+    count--;
+    total -= price;
+
+    if(total < 0) total = 0;
+
+    localStorage.setItem("cartCount", count);
+    localStorage.setItem("cartTotal", total);
+
+    document.getElementById("cart").innerText = count;
+  }
+}
+
+function goToPayment(){
+  let c = parseInt(localStorage.getItem("cartCount")) || 0;
+
+  if(c === 0){
+    alert("Cart is empty 😅");
+    return;
+  }
+
+  window.location.href = "payment.html";
+}
+
+</script>
+
+</body>
+</html>
